@@ -1,0 +1,13 @@
+jobs:
+  - subName: clean-table
+    image:
+      repository: buildpack-deps
+      tag: curl
+      imagePullPolicy: Always
+      buildpack-deps: curl
+    schedule: "0 */1 * * *"
+    command: ["curl"]
+    args: ["-f", "-X", "DELETE","http://lssrt-analytics-harvester.prod.a.o3.ru/touch-tracking-delete?rows_count=200000&hours=48", "-H", "accept: application/json", "-v"]
+    failedJobsHistoryLimit: 2
+    successfulJobsHistoryLimit: 2
+    concurrencyPolicy: Forbid

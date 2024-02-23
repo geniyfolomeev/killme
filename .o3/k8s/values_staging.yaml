@@ -1,0 +1,18 @@
+replicaCount: 3
+
+deploy:
+  env:
+    - name: SENTRY_ENVIRONMENT
+      value: stg
+    - name: VAULT_ADDR
+      value: https://vault.s.o3.ru:8200
+    - name: VAULT_AUTH_URL
+      value: o-stg
+    - name: VAULT_ROLE
+      value: kuber-stg-ls-srt-qa-ls-qa-flate-26066
+    - name: VAULT_PATH
+      value: stg/ls-srt-qa/ls-qa-flate
+    - name: REALTIMECONFIG_VAULT_KEY_PATTERN
+      value: o-secret/stg/ls-srt-qa/ls-qa-flate
+    - name: VAULT_MOUNT
+      value: o-secret

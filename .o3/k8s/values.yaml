@@ -1,0 +1,54 @@
+image:
+  imagePullPolicy: Always
+
+vaultScheme: "2"
+
+service:
+  monitoringScope: pythonapi
+  accessFromInternet: false
+  ports:
+    - name: http
+      port: 80
+    - name: debug
+      port: 84
+
+resources: {}
+
+readinessProbe:
+  httpGet:
+    path: /ready
+    port: debug
+  initialDelaySeconds: 25
+  periodSeconds: 30
+  timeoutSeconds: 10
+
+livenessProbe:
+  httpGet:
+    path: /live
+    port: debug
+  initialDelaySeconds: 25
+  periodSeconds: 30
+  timeoutSeconds: 10
+  failureThreshold: 20
+  successThreshold: 1
+
+monitoring:
+  importance: low
+  slackChannel: lssrt-analytics-harvester
+  opsgenie:
+    responsibleTeam: ls_srt_analytics_team
+  baseAlerts:
+    enabled: false
+
+
+realtimeConfigSidecar:
+  enabled: "no"
+  debugPort: 8085
+
+
+realtimeConfig:
+  TestConfigParam:
+    usage: "Use kafka"
+    group: "kafka"
+    value: "false"
+    type: bool

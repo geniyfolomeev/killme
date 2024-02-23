@@ -1,0 +1,14 @@
+replicaCount: 2
+
+deploy:
+  env:
+    - name: SENTRY_ENVIRONMENT
+      value: dev
+    - name: VAULT_ADDR
+      value: https://vault.s.o3.ru:8200
+    - name: VAULT_AUTH_URL
+      value: o-dev
+    - name: VAULT_ROLE
+      value: kuber-dev-lssrt-analytics-lssrt-analytics-harvester-16615
+    - name: VAULT_PATH
+      value: o-secret/dev/lssrt/analytics/lssrt-analytics-harvester
