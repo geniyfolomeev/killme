@@ -18,7 +18,6 @@ app.include_router(collector_handler)
 app.include_router(debug_handler)
 
 logging.getLogger("fastapi").disabled = True
-logging.getLogger("uvicorn").disabled = True
 logging.getLogger("uvicorn.access").disabled = True
 logging.getLogger("uvicorn.error").disabled = True
 
