@@ -19,20 +19,24 @@ from .grpc_helper import (
 from utils.warden.client import (
     NoEndPointException,
 )
+from utils.logger import logger
 
 collector_handler = APIRouter(
     tags=["Collector"],
     prefix="/collector",
 )
 
+UPLOAD_URL = "/upload"
 
-@collector_handler.post("/upload")
+
+@collector_handler.post(UPLOAD_URL)
 async def upload(request: UploadRequest = Depends(), file: UploadFile = File(...)):
     content = await file.read()
     try:
         xml = file_to_xml(content)
     except InvalidXml as e:
-        return HTTPException(
+        logger.warning(f"POST {UPLOAD_URL} Request: {request.dict()} Error: {str(e)}")
+        raise HTTPException(
             status_code=400,
             detail=str(e),
         )
@@ -40,11 +44,12 @@ async def upload(request: UploadRequest = Depends(), file: UploadFile = File(...
     try:
         handlers = await get_grpc_handlers(service_name=request.service, version=request.version, env="stg")
     except NoEndPointException as e:
-        return HTTPException(
+        logger.warning(f"POST {UPLOAD_URL} Request: {request.dict()} Error: {str(e)}")
+        raise HTTPException(
             status_code=400,
             detail=str(e)
         )
 
     coverage = find_handlers_coverage(xml, handlers)
-
+    logger.success(f"POST {UPLOAD_URL} Request: {request.dict()} Coverage: {coverage}")
     return coverage
