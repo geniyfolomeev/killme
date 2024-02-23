@@ -5,8 +5,8 @@ include:
 
 
 variables:
-  K8S_NAMESPACE: lssrt
-  SERVICE_NAME: ls-srt-qa-metrics-api
+  ITC_ID: 20618
+  SERVICE_NAME: ls-qa-metrics-api
   HELM_VALUES_FOLDER: .o3/k8s
   DOCKERFILE_PATH: .o3/build/package/Dockerfile
 
