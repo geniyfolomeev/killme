@@ -1,5 +1,5 @@
 import grpc
-from app.utils.warden.client import Warden
+from utils.warden.client import Warden
 from grpc_reflection.v1alpha.proto_reflection_descriptor_database import ProtoReflectionDescriptorDatabase
 from google.protobuf.descriptor_pool import DescriptorPool
 

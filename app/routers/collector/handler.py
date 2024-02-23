@@ -16,7 +16,7 @@ from .models import (
 from .grpc_helper import (
     get_grpc_handlers,
 )
-from app.utils.warden.client import (
+from utils.warden.client import (
     NoEndPointException,
 )
 

@@ -1,9 +1,9 @@
 import grpc
-from app.constants import WARDEN_HOST_TEMPLATE
-from app.utils.warden.stubs.endpoints.v1.endpoints_pb2_grpc import (
+from constants import WARDEN_HOST_TEMPLATE
+from utils.warden.stubs.endpoints.v1.endpoints_pb2_grpc import (
     EndpointsServiceStub,
 )
-from app.utils.warden.stubs.endpoints.v1.endpoints_pb2 import GetEndpointsRequest
+from utils.warden.stubs.endpoints.v1.endpoints_pb2 import GetEndpointsRequest
 
 
 class NoEndPointException(Exception):

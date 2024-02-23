@@ -1,9 +1,9 @@
 import uvicorn
 from fastapi import FastAPI
-from app.routers.collector.handler import (
+from routers.collector.handler import (
     collector_handler,
 )
-from app.routers.debug.handler import (
+from routers.debug.handler import (
     debug_handler,
 )
 
