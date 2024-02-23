@@ -51,5 +51,5 @@ async def upload(request: UploadRequest = Depends(), file: UploadFile = File(...
         )
 
     coverage = find_handlers_coverage(xml, handlers)
-    logger.success(f"POST {UPLOAD_URL} Request: {request.dict()} Coverage: {coverage}")
+    logger.info(f"POST {UPLOAD_URL} Request: {request.dict()} Coverage: {coverage}")
     return coverage
