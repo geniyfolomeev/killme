@@ -1,0 +1,70 @@
+{% extends "index.html" %}
+
+{% block content %}
+<section>
+    <div class="filters">
+        <label for="team-filter">Команда:</label>
+        <select id="team-filter" name="team">
+                <option value="">Все команды</option>
+                {% for team in teams %}
+                <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            <!-- Добавьте здесь другие варианты команд -->
+        </select>
+    </div>
+    <table class="center">
+        <tr>
+            <th>Команда</th>
+            <th>Сервис</th>
+            <th>Покрытие</th>
+            <th>Изменения</th>
+        </tr>
+        {% for service, info in services.items() %}
+        <tr class="service-row" data-team="{{ info['team'] }}">
+            <td rowspan="3">{{ info['team'] }}</td>
+            <td rowspan="3">{{ service }}</td>
+            <td>Unit: <strong>{{ info['unit']['value'] }}%</strong></td>
+            <td>
+                Неделя: <strong>{{ info['unit']['changes'].get('week', 0) }}%</strong>
+                Месяц: <strong>{{ info['unit']['changes'].get('month', 0) }}%</strong>
+                Квартал: <strong>{{ info['unit']['changes'].get('quarter', 0) }}%</strong>
+            </td>
+        </tr>
+        <tr class="service-row" data-team="{{ info['team'] }}">
+            <td>Integration: <strong>{{ info['integration']['value'] }}%</strong></td>
+            <td>
+                Неделя: <strong>{{ info['integration']['changes'].get('week', 0) }}%</strong>
+                Месяц: <strong>{{ info['integration']['changes'].get('month', 0) }}%</strong>
+                Квартал: <strong>{{ info['integration']['changes'].get('quarter', 0) }}%</strong>
+            </td>
+        </tr>
+        <tr class="service-row" data-team="{{ info['team'] }}">
+            <td>E2E: <strong>{{ info['e2e']['value'] }}%</strong></td>
+            <td>
+                Неделя: <strong>{{ info['e2e']['changes'].get('week', 0) }}%</strong>
+                Месяц: <strong>{{ info['e2e']['changes'].get('month', 0) }}%</strong>
+                Квартал: <strong>{{ info['e2e']['changes'].get('quarter', 0) }}%</strong>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</section>
+
+<script>
+    // Обработчик события для фильтрации данных по выбранной команде
+    document.getElementById('team-filter').addEventListener('change', function() {
+        var selectedTeam = this.value;
+        var rows = document.querySelectorAll('[class*=service-row]');
+
+        // Показать или скрыть строки таблицы в зависимости от выбранной команды
+        rows.forEach(function(row) {
+            var team = row.getAttribute('data-team');
+            if (selectedTeam === '' || team === selectedTeam) {
+                row.style.display = 'table-row';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,76 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #1e90ff; /* Темно-синий цвет для плашки */
+    color: #fff;
+    padding: 10px;
+    text-align: left;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+    font-weight: bold;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px; /* Добавим закругленные углы кнопкам */
+}
+
+nav ul li a:hover {
+    background-color: rgba(30, 128, 255, 0.74);
+}
+
+/* Стили для таблицы */
+table {
+    width: 90%;
+    border-collapse: collapse;
+}
+
+table tr {
+    margin-bottom: 100px;
+}
+
+table th, table td {
+    padding: 8px;
+    text-align: left;
+    background-color: blueviolet;
+    border: 1px solid red;
+}
+
+table th {
+    background-color: #1e90ff;
+    text-align: left;
+    color: #fff;
+}
+
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Стили для фильтров */
+.filters {
+    margin-left: 5%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.service-row {
+    margin-bottom: 100px;
+}
